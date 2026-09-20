@@ -1,434 +1,435 @@
-/* 공통 스타일 및 따뜻한 색감 설정 */
+/* 공통 스타일 및 파스텔 녹색 & 크림색 감성 설정 /
 :root {
-  --bg-color: #fcf9f5;
-  --card-bg: #ffffff;
-  --text-main: #4a403a;
-  --text-sub: #8c827b;
-  --primary: #d4a373;
-  --primary-hover: #bc8a5f;
-  --accent: #faedcd;
-  --border-color: #f0e6dc;
-  --danger: #e07a5f;
-  }
-  
-  {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  }
-  
-  body {
-  font-family: 'Noto Sans KR', sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-main);
-  line-height: 1.6;
-  padding: 40px 20px;
-  }
-  
-  .container {
-  max-width: 900px;
-  margin: 0 auto;
-  }
-  
-  /* 헤더 */
-  .header {
-  text-align: center;
-  margin-bottom: 40px;
-  }
-  
-  .logo {
-  font-family: 'Noto Serif KR', serif;
-  font-size: 2.2rem;
-  color: var(--text-main);
-  margin-bottom: 8px;
-  }
-  
-  .subtitle {
-  color: var(--text-sub);
-  font-size: 1rem;
-  }
-  
-  /* 액션 바 (검색 및 작성버튼) */
-  .action-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-  gap: 15px;
-  flex-wrap: wrap;
-  }
-  
-  .search-box {
-  display: flex;
-  flex: 1;
-  max-width: 450px;
-  gap: 8px;
-  }
-  
-  .search-box input {
-  flex: 1;
-  padding: 10px 15px;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  background-color: var(--card-bg);
-  color: var(--text-main);
-  }
-  
-  .btn {
-  padding: 10px 18px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  font-weight: 500;
-  text-decoration: none;
-  display: inline-block;
-  transition: background 0.2s;
-  font-size: 0.95rem;
-  }
-  
-  .primary-btn {
-  background-color: var(--primary);
-  color: white;
-  }
-  
-  .primary-btn:hover {
-  background-color: var(--primary-hover);
-  }
-  
-  .search-btn {
-  background-color: #e9edc9;
-  color: #4a403a;
-  }
-  
-  .search-btn:hover {
-  background-color: #ccd5ae;
-  }
-  
-  /* 책 목록 카드 레이아웃 */
-  .book-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 25px;
-  margin-bottom: 50px;
-  }
-  
-  .book-card {
-  background-color: var(--card-bg);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-  border: 1px solid var(--border-color);
-  display: flex;
-  flex-direction: column;
-  }
-  
-  .book-cover-placeholder {
-  width: 100%;
-  height: 180px;
-  background-color: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-sub);
-  font-size: 0.95rem;
-  }
-  
-  .book-info {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  }
-  
-  .book-meta {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.85rem;
-  color: var(--text-sub);
-  margin-bottom: 8px;
-  }
-  
-  .book-title {
-  font-family: 'Noto Serif KR', serif;
-  font-size: 1.3rem;
-  margin-bottom: 8px;
-  color: var(--text-main);
-  }
-  
-  .rating {
-  font-size: 0.9rem;
-  margin-bottom: 12px;
-  }
-  
-  .book-snippet {
-  font-size: 0.9rem;
-  color: var(--text-sub);
-  margin-bottom: 20px;
-  flex: 1;
-  }
-  
-  .text-btn {
-  background: none;
-  color: var(--primary-hover);
-  padding: 0;
-  font-weight: 600;
-  }
-  
-  .text-btn:hover {
-  text-decoration: underline;
-  }
-  
-  /* 상세 페이지 스타일 */
-  .detail-container {
-  max-width: 750px;
-  }
-  
-  .nav-back {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  }
-  
-  .back-btn {
-  background-color: #e9edc9;
-  color: var(--text-main);
-  }
-  
-  .manage-btns {
-  display: flex;
-  gap: 8px;
-  }
-  
-  .edit-btn {
-  background-color: #faedcd;
-  color: var(--text-main);
-  font-size: 0.85rem;
-  padding: 6px 12px;
-  }
-  
-  .delete-btn {
-  background-color: #f8d7da;
-  color: var(--danger);
-  font-size: 0.85rem;
-  padding: 6px 12px;
-  }
-  
-  .detail-card {
-  background-color: var(--card-bg);
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-  border: 1px solid var(--border-color);
-  margin-bottom: 30px;
-  }
-  
-  .detail-header-section {
-  display: flex;
-  gap: 25px;
-  margin-bottom: 30px;
-  align-items: center;
-  flex-wrap: wrap;
-  }
-  
-  .detail-cover-placeholder {
-  width: 140px;
-  height: 180px;
-  background-color: var(--accent);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: var(--text-sub);
-  font-size: 0.85rem;
-  padding: 10px;
-  }
-  
-  .detail-title-box {
-  flex: 1;
-  }
-  
-  .badge {
-  background-color: var(--accent);
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  color: var(--text-main);
-  font-weight: 500;
-  }
-  
-  .book-title-large {
-  font-family: 'Noto Serif KR', serif;
-  font-size: 1.8rem;
-  margin: 10px 0;
-  }
-  
-  .book-meta-large {
-  display: flex;
-  gap: 20px;
-  color: var(--text-sub);
-  font-size: 0.9rem;
-  margin-bottom: 10px;
-  }
-  
-  .rating-large {
-  font-size: 1rem;
-  }
-  
-  .content-section, .quotes-section {
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border-color);
-  }
-  
-  .content-section h3, .quotes-section h3 {
-  font-family: 'Noto Serif KR', serif;
-  margin-bottom: 12px;
-  font-size: 1.2rem;
-  }
-  
-  .content-text {
-  font-size: 1rem;
-  color: var(--text-main);
-  line-height: 1.8;
-  }
-  
-  .quote-box {
-  background-color: var(--bg-color);
-  border-left: 4px solid var(--primary);
-  padding: 15px;
-  border-radius: 0 8px 8px 0;
-  margin-bottom: 12px;
-  }
-  
-  .quote-text {
-  font-style: italic;
-  margin-bottom: 5px;
-  }
-  
-  .quote-page {
-  font-size: 0.85rem;
-  color: var(--text-sub);
-  display: block;
-  text-align: right;
-  }
-  
-  /* 작성/수정 폼 스타일 */
-  .write-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  }
-  
-  .form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  }
-  
-  .form-group label {
-  font-weight: 500;
-  font-size: 0.9rem;
-  color: var(--text-main);
-  }
-  
-  .form-input, .form-textarea {
-  padding: 12px 15px;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  background-color: var(--bg-color);
-  color: var(--text-main);
-  font-family: inherit;
-  font-size: 0.95rem;
-  }
-  
-  .form-file {
-  padding: 8px 0;
-  }
-  
-  .form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  }
-  
-  .quote-input-row {
-  display: flex;
-  gap: 10px;
-  }
-  
-  /* 댓글 영역 스타일 */
-  .comments-section {
-  background-color: var(--card-bg);
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-  border: 1px solid var(--border-color);
-  }
-  
-  .comments-section h3 {
-  font-family: 'Noto Serif KR', serif;
-  margin-bottom: 20px;
-  font-size: 1.2rem;
-  }
-  
-  .comment-list {
-  margin-bottom: 25px;
-  }
-  
-  .comment-item {
-  padding: 15px 0;
-  border-bottom: 1px solid var(--border-color);
-  }
-  
-  .comment-author {
-  font-weight: 600;
-  font-size: 0.9rem;
-  margin-right: 10px;
-  }
-  
-  .comment-date {
-  font-size: 0.75rem;
-  color: var(--text-sub);
-  }
-  
-  .comment-content {
-  margin-top: 6px;
-  font-size: 0.9rem;
-  color: var(--text-main);
-  }
-  
-  .comment-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  }
-  
-  .comment-name-input {
-  padding: 10px;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  max-width: 200px;
-  }
-  
-  .comment-textarea {
-  padding: 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  resize: vertical;
-  min-height: 80px;
-  font-family: inherit;
-  }
-  
-  .comment-submit {
-  align-self: flex-end;
-  }
-  
-  /* 푸터 */
-  .footer {
-  text-align: center;
-  margin-top: 40px;
-  color: var(--text-sub);
-  font-size: 0.85rem;
-  }
+--bg-color: #f7f9f4;         / 아주 연한 파스텔 크림-그린 베이스 /
+--card-bg: #ffffff;          / 깔끔한 흰색 카드 /
+--text-main: #3b4d3c;        / 차분한 진한 녹갈색 텍스트 /
+--text-sub: #758a76;         / 부드러운 회녹색 서브 텍스트 /
+--primary: #87a987;          / 눈이 편안한 파스텔톤 녹색 /
+--primary-hover: #6e8e6e;    / 진한 파스텔 녹색 (버튼 호버용) /
+--accent: #eef2e6;           / 은은한 크림-그린 포인트 박스 색상 /
+--border-color: #dbe4d5;     / 부드러운 테두리 선 색상 /
+--danger: #d98880;           / 부드러운 톤의 삭제 버튼 색상 */
+}
+
+{
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+body {
+font-family: 'Noto Sans KR', sans-serif;
+background-color: var(--bg-color);
+color: var(--text-main);
+line-height: 1.6;
+padding: 40px 20px;
+}
+
+.container {
+max-width: 900px;
+margin: 0 auto;
+}
+
+/* 헤더 */
+.header {
+text-align: center;
+margin-bottom: 40px;
+}
+
+.logo {
+font-family: 'Noto Serif KR', serif;
+font-size: 2.2rem;
+color: var(--text-main);
+margin-bottom: 8px;
+}
+
+.subtitle {
+color: var(--text-sub);
+font-size: 1rem;
+}
+
+/* 액션 바 (검색 및 작성버튼) */
+.action-bar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 30px;
+gap: 15px;
+flex-wrap: wrap;
+}
+
+.search-box {
+display: flex;
+flex: 1;
+max-width: 450px;
+gap: 8px;
+}
+
+.search-box input {
+flex: 1;
+padding: 10px 15px;
+border: 1px solid var(--border-color);
+border-radius: 8px;
+background-color: var(--card-bg);
+color: var(--text-main);
+}
+
+.btn {
+padding: 10px 18px;
+border-radius: 8px;
+border: none;
+cursor: pointer;
+font-weight: 500;
+text-decoration: none;
+display: inline-block;
+transition: background 0.2s;
+font-size: 0.95rem;
+}
+
+.primary-btn {
+background-color: var(--primary);
+color: white;
+}
+
+.primary-btn:hover {
+background-color: var(--primary-hover);
+}
+
+.search-btn {
+background-color: #d0e1d4;
+color: #3b4d3c;
+}
+
+.search-btn:hover {
+background-color: #b8d2bd;
+}
+
+/* 책 목록 카드 레이아웃 */
+.book-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+gap: 25px;
+margin-bottom: 50px;
+}
+
+.book-card {
+background-color: var(--card-bg);
+border-radius: 12px;
+overflow: hidden;
+box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+border: 1px solid var(--border-color);
+display: flex;
+flex-direction: column;
+}
+
+.book-cover-placeholder {
+width: 100%;
+height: 180px;
+background-color: var(--accent);
+display: flex;
+align-items: center;
+justify-content: center;
+color: var(--text-sub);
+font-size: 0.95rem;
+}
+
+.book-info {
+padding: 20px;
+display: flex;
+flex-direction: column;
+flex: 1;
+}
+
+.book-meta {
+display: flex;
+justify-content: space-between;
+font-size: 0.85rem;
+color: var(--text-sub);
+margin-bottom: 8px;
+}
+
+.book-title {
+font-family: 'Noto Serif KR', serif;
+font-size: 1.3rem;
+margin-bottom: 8px;
+color: var(--text-main);
+}
+
+.rating {
+font-size: 0.9rem;
+margin-bottom: 12px;
+}
+
+.book-snippet {
+font-size: 0.9rem;
+color: var(--text-sub);
+margin-bottom: 20px;
+flex: 1;
+}
+
+.text-btn {
+background: none;
+color: var(--primary);
+padding: 0;
+font-weight: 600;
+}
+
+.text-btn:hover {
+text-decoration: underline;
+color: var(--primary-hover);
+}
+
+/* 상세 페이지 스타일 */
+.detail-container {
+max-width: 750px;
+}
+
+.nav-back {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 20px;
+}
+
+.back-btn {
+background-color: #d0e1d4;
+color: var(--text-main);
+}
+
+.manage-btns {
+display: flex;
+gap: 8px;
+}
+
+.edit-btn {
+background-color: #eef2e6;
+color: var(--text-main);
+font-size: 0.85rem;
+padding: 6px 12px;
+}
+
+.delete-btn {
+background-color: #f7e6e5;
+color: var(--danger);
+font-size: 0.85rem;
+padding: 6px 12px;
+}
+
+.detail-card {
+background-color: var(--card-bg);
+border-radius: 12px;
+padding: 30px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+border: 1px solid var(--border-color);
+margin-bottom: 30px;
+}
+
+.detail-header-section {
+display: flex;
+gap: 25px;
+margin-bottom: 30px;
+align-items: center;
+flex-wrap: wrap;
+}
+
+.detail-cover-placeholder {
+width: 140px;
+height: 180px;
+background-color: var(--accent);
+border-radius: 8px;
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+color: var(--text-sub);
+font-size: 0.85rem;
+padding: 10px;
+}
+
+.detail-title-box {
+flex: 1;
+}
+
+.badge {
+background-color: var(--accent);
+padding: 4px 8px;
+border-radius: 4px;
+font-size: 0.75rem;
+color: var(--text-main);
+font-weight: 500;
+}
+
+.book-title-large {
+font-family: 'Noto Serif KR', serif;
+font-size: 1.8rem;
+margin: 10px 0;
+}
+
+.book-meta-large {
+display: flex;
+gap: 20px;
+color: var(--text-sub);
+font-size: 0.9rem;
+margin-bottom: 10px;
+}
+
+.rating-large {
+font-size: 1rem;
+}
+
+.content-section, .quotes-section {
+margin-top: 30px;
+padding-top: 20px;
+border-top: 1px solid var(--border-color);
+}
+
+.content-section h3, .quotes-section h3 {
+font-family: 'Noto Serif KR', serif;
+margin-bottom: 12px;
+font-size: 1.2rem;
+}
+
+.content-text {
+font-size: 1rem;
+color: var(--text-main);
+line-height: 1.8;
+}
+
+.quote-box {
+background-color: var(--bg-color);
+border-left: 4px solid var(--primary);
+padding: 15px;
+border-radius: 0 8px 8px 0;
+margin-bottom: 12px;
+}
+
+.quote-text {
+font-style: italic;
+margin-bottom: 5px;
+}
+
+.quote-page {
+font-size: 0.85rem;
+color: var(--text-sub);
+display: block;
+text-align: right;
+}
+
+/* 작성/수정 폼 스타일 */
+.write-form {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.form-group {
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+
+.form-group label {
+font-weight: 500;
+font-size: 0.9rem;
+color: var(--text-main);
+}
+
+.form-input, .form-textarea {
+padding: 12px 15px;
+border: 1px solid var(--border-color);
+border-radius: 8px;
+background-color: var(--bg-color);
+color: var(--text-main);
+font-family: inherit;
+font-size: 0.95rem;
+}
+
+.form-file {
+padding: 8px 0;
+}
+
+.form-row {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 20px;
+}
+
+.quote-input-row {
+display: flex;
+gap: 10px;
+}
+
+/* 댓글 영역 스타일 */
+.comments-section {
+background-color: var(--card-bg);
+border-radius: 12px;
+padding: 30px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+border: 1px solid var(--border-color);
+}
+
+.comments-section h3 {
+font-family: 'Noto Serif KR', serif;
+margin-bottom: 20px;
+font-size: 1.2rem;
+}
+
+.comment-list {
+margin-bottom: 25px;
+}
+
+.comment-item {
+padding: 15px 0;
+border-bottom: 1px solid var(--border-color);
+}
+
+.comment-author {
+font-weight: 600;
+font-size: 0.9rem;
+margin-right: 10px;
+}
+
+.comment-date {
+font-size: 0.75rem;
+color: var(--text-sub);
+}
+
+.comment-content {
+margin-top: 6px;
+font-size: 0.9rem;
+color: var(--text-main);
+}
+
+.comment-form {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.comment-name-input {
+padding: 10px;
+border: 1px solid var(--border-color);
+border-radius: 8px;
+max-width: 200px;
+}
+
+.comment-textarea {
+padding: 12px;
+border: 1px solid var(--border-color);
+border-radius: 8px;
+resize: vertical;
+min-height: 80px;
+font-family: inherit;
+}
+
+.comment-submit {
+align-self: flex-end;
+}
+
+/* 푸터 */
+.footer {
+text-align: center;
+margin-top: 40px;
+color: var(--text-sub);
+font-size: 0.85rem;
+}
