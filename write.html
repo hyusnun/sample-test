@@ -3,54 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>새 후기 작성 :: 따뜻한 서재</title>
+    <title>나만의 책 기록장 :: 따뜻한 서재</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <header>
             <h1>📖 나만의 따뜻한 서재</h1>
-            <p>새로운 책의 감동을 기록해보세요.</p>
+            <p>읽은 책들의 감동을 기록하는 공간입니다.</p>
         </header>
 
-        <div class="detail-header">
-            <a href="index.html" class="btn-back">&larr; 목록으로</a>
-            <h2>새 후기 작성하기</h2>
+        <div class="search-area">
+            <input type="text" id="searchInput" placeholder="책 제목 또는 작성자 검색...">
+            <button class="btn-search" onclick="searchReviews()">검색</button>
+            <a href="write.html" class="btn-write">새 글 쓰기</a>
         </div>
 
-        <div class="detail-content">
-            <!-- 폼 입력 영역 -->
-            <form id="writeForm">
-                <div class="form-group">
-                    <label for="title">책 제목</label>
-                    <input type="text" id="title" name="title" placeholder="읽은 책 제목을 입력하세요" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="author">작성자</label>
-                    <input type="text" id="author" name="author" placeholder="작성자 이름을 입력하세요" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="rating">별점 (5점 만점)</label>
-                    <select id="rating" name="rating" required>
-                        <option value="5">★★★★★ (5점)</option>
-                        <option value="4">★★★★☆ (4점)</option>
-                        <option value="3">★★★☆☆ (3점)</option>
-                        <option value="2">★★☆☆☆ (2점)</option>
-                        <option value="1">★☆☆☆☆ (1점)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="content">내용 (감상평)</label>
-                    <textarea id="content" name="content" rows="6" placeholder="책을 읽고 느낀 점을 자유롭게 적어주세요" required></textarea>
-                </div>
-
-                <div class="form-actions">
-                    <button type="submit" class="btn-save" id="saveBtn">저장하기</button>
-                </div>
-            </form>
+        <div class="review-list" id="reviewList">
+            <!-- 자바스크립트로 구글 스프레드시트 데이터를 여기에 불러와서 넣어줍니다 -->
+            <p style="text-align: center; color: #588157;">데이터를 불러오는 중입니다...</p>
         </div>
 
         <footer>
@@ -59,39 +30,74 @@
     </div>
 
     <script>
-        // 새로 발급받으신 구글 앱스 스크립트 웹앱 주소
-        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzC8TyRbXMlNXZNnkK6AEEfe8uPbOl_D96CL99STfYtiHXmDE7AmkHfyD_c6931ixs/exec";
+        // 새로 전달해주신 구글 앱스 스크립트 웹앱 주소
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyfkiIN8YbN5LtU_5uDYo1CxWUw_e-XfB1HziJRHdd4rob5s6GvVGM69yYcfo2K1ZI/exec";
 
-        document.getElementById('writeForm').addEventListener('submit', function(event) {
-            event.preventDefault(); 
+        let allReviews = []; // 전체 데이터를 담아둘 변수
 
-            const saveBtn = document.getElementById('saveBtn');
-            saveBtn.innerText = '저장 중...';
-            saveBtn.disabled = true;
-
-            // 입력한 값들을 가져옴
-            const title = encodeURIComponent(document.getElementById('title').value);
-            const author = encodeURIComponent(document.getElementById('author').value);
-            const rating = encodeURIComponent(document.getElementById('rating').value);
-            const content = encodeURIComponent(document.getElementById('content').value);
-
-            // GET 방식으로 안전하게 데이터를 전달하기 위한 주소 조합
-            const targetUrl = `${WEB_APP_URL}?action=save&title=${title}&author=${author}&rating=${rating}&content=${content}`;
-
-            // GET 방식 요청으로 CORS 오류 없이 깔끔하게 저장
-            fetch(targetUrl)
-            .then(response => response.json())
-            .then(data => {
-                alert('성공적으로 저장되었습니다!');
-                window.location.href = 'index.html'; // 저장 후 메인으로 이동
-            })
-            .catch(error => {
-                console.error('저장 중 에러 발생:', error);
-                // 통신 응답을 파싱하는 과정에서 가끔 에러가 나더라도 데이터는 이미 시트에 쏙 들어갑니다!
-                alert('성공적으로 저장되었습니다!');
-                window.location.href = 'index.html';
-            });
+        // 웹페이지가 열리면 자동으로 실행되는 함수 (스프레드시트에서 데이터 가져오기)
+        window.addEventListener('DOMContentLoaded', function() {
+            fetch(WEB_APP_URL)
+                .then(response => response.json())
+                .then(data => {
+                    allReviews = data;
+                    displayReviews(allReviews);
+                })
+                .catch(error => {
+                    console.error('데이터를 불러오는 중 에러 발생:', error);
+                    document.getElementById('reviewList').innerHTML = '<p style="text-align: center; color: #E07A5F;">데이터를 불러오지 못했습니다. 주소를 확인해주세요.</p>';
+                });
         });
+
+        // 화면에 후기 목록을 카드 형태로 그려주는 함수
+        function displayReviews(reviews) {
+            const reviewListEl = document.getElementById('reviewList');
+            reviewListEl.innerHTML = '';
+
+            if (reviews.length === 0) {
+                reviewListEl.innerHTML = '<p style="text-align: center; color: #7F8C8D;">등록된 책 후기가 없습니다. 첫 글을 작성해 보세요!</p>';
+                return;
+            }
+
+            reviews.forEach((review, index) => {
+                // 별점 만들기 (예: 5점이면 ★★★★★)
+                let stars = '';
+                const ratingNum = Number(review.rating) || 0;
+                for (let i = 0; i < 5; i++) {
+                    stars += (i < ratingNum) ? '<span class="star-icon filled">★</span>' : '<span class="star-icon">★</span>';
+                }
+
+                // 카드 HTML 만들기
+                const card = document.createElement('div');
+                card.className = 'review-card';
+                card.innerHTML = `
+                    <div class="card-content" style="width: 100%;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <h3 style="margin: 0; color: #3A5A40;">${review.title}</h3>
+                            <div>${stars}</div>
+                        </div>
+                        <p class="card-author">작성자: ${review.author}</p>
+                        <p class="card-date">작성일: ${review.date}</p>
+                        <p class="card-preview">${review.content}</p>
+                        <div class="card-actions">
+                            <a href="detail.html" class="btn-detail">자세히 보기</a>
+                        </div>
+                    </div>
+                `;
+                reviewListEl.appendChild(card);
+            });
+        }
+
+        // 검색 버튼을 눌렀을 때 실행되는 함수
+        function searchReviews() {
+            const keyword = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = allReviews.filter(review => {
+                const titleMatch = review.title && review.title.toLowerCase().includes(keyword);
+                const authorMatch = review.author && review.author.toLowerCase().includes(keyword);
+                return titleMatch || authorMatch;
+            });
+            displayReviews(filtered);
+        }
     </script>
 </body>
 </html>
