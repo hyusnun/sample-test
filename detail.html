@@ -3,88 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>따뜻한 나의 책장 - 상세 보기</title>
+    <title>책 후기 상세 :: 따뜻한 서재</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container detail-container">
-        <!-- 상단 네비게이션 -->
-        <nav class="nav-back">
-            <a href="index.html" class="btn back-btn">&larr; 홈으로 돌아가기</a>
-            <div class="manage-btns">
-                <a href="edit.html" class="btn edit-btn">수정하기</a>
-                <button class="btn delete-btn">삭제하기</button>
-            </div>
-        </nav>
+    <div class="container">
+        <header>
+            <h1>📖 나만의 따뜻한 서재</h1>
+            <p>책 속에서 발견한 감동을 되새겨봅니다.</p>
+        </header>
 
-        <!-- 책 상세 정보 카드 -->
-        <article class="detail-card">
-            <div class="detail-header-section">
-                <div class="detail-cover-placeholder">
-                    <span>📚 책 표지 이미지</span>
-                </div>
-                <div class="detail-title-box">
-                    <span class="badge">독서 기록</span>
-                    <h1 class="book-title-large">어린 왕자</h1>
-                    <div class="book-meta-large">
-                        <span><strong>작성자:</strong> 김철수</span>
-                        <span><strong>작성일:</strong> 2026-06-01</span>
-                    </div>
-                    <div class="rating-large">⭐⭐⭐⭐⭐ (5점 만점)</div>
-                </div>
+        <div class="detail-header">
+            <a href="index.html" class="btn-back">&larr; 목록으로</a>
+            <div class="detail-buttons">
+                <button class="btn-edit" onclick="location.href='edit.html'">수정하기</button>
+                <button class="btn-delete" onclick="alert('삭제 기능은 준비 중입니다!')">삭제하기</button>
             </div>
+        </div>
 
-            <!-- 내용 -->
-            <div class="content-section">
-                <h3>후기 내용</h3>
-                <p class="content-text">
-                    어릴 때 읽었을 때와 다 큰 지금 읽었을 때의 느낌이 완전히 다른 책이다. 바쁜 일상 속에서 잊고 살았던 소중한 가치들에 대해 깊이 생각해보게 만들어 주었다. 여우가 어린 왕자에게 해준 말이 머릿속에서 오래도록 남는 감동적인 독서였다.
-                </p>
-            </div>
+        <div class="detail-content" id="detailContainer">
+            <p style="text-align: center; color: #588157;">상세 내용을 불러오는 중입니다...</p>
+        </div>
 
-            <!-- 좋았던 구절 -->
-            <div class="quotes-section">
-                <h3>💡 좋았던 구절</h3>
-                <div class="quote-box">
-                    <p class="quote-text">"가장 중요한 것은 눈에 보이지 않아. 마음으로 봐야만 잘 볼 수 있다는 거야."</p>
-                    <span class="quote-page">p. 82</span>
-                </div>
-                <div class="quote-box">
-                    <p class="quote-text">"네가 네 장미를 그렇게 소중하게 만든 건, 그 장미를 위해 네가 흘린 시간 때문이야."</p>
-                    <span class="quote-page">p. 114</span>
-                </div>
-            </div>
-        </article>
-
-        <!-- 댓글 영역 -->
-        <section class="comments-section">
-            <h3>💬 방문자 댓글</h3>
-            <div class="comment-list">
-                <div class="comment-item">
-                    <span class="comment-author">영희</span>
-                    <p class="comment-content">와, 저도 정말 좋아하는 책이에요! 구절 내용이 참 마음에 와닿네요.</p>
-                    <span class="comment-date">2026-06-02</span>
-                </div>
-                <div class="comment-item">
-                    <span class="comment-author">민수</span>
-                    <p class="comment-content">후기 깔끔하게 잘 쓰셨네요. 저도 다시 읽어봐야겠어요.</p>
-                    <span class="comment-date">2026-06-03</span>
-                </div>
-            </div>
-
-            <!-- 댓글 입력창 -->
-            <div class="comment-form">
-                <input type="text" placeholder="이름을 입력하세요" class="comment-name-input" />
-                <textarea placeholder="따뜻한 댓글을 남겨주세요..." class="comment-textarea"></textarea>
-                <button class="btn primary-btn comment-submit">댓글 등록</button>
-            </div>
-        </section>
-
-        <!-- 푸터 -->
-        <footer class="footer">
-            <p>&copy; 2026 따뜻한 나의 책장. All rights reserved.</p>
+        <footer>
+            <p>&copy; 2026 따뜻한 서재 기록장. All rights reserved.</p>
         </footer>
     </div>
+
+    <script>
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwDzjC4Yfaz0jN6fSKEQe05zggbDL-pkO_Hzp4XupI9NH3UToArEFrCZrxlpQyaFcw/exec";
+
+        window.addEventListener('DOMContentLoaded', function() {
+            // 주소창(URL)에서 넘어온 index 번호표 읽기 (예: ?index=0)
+            const urlParams = new URLSearchParams(window.location.search);
+            const reviewIndex = urlParams.get('index');
+
+            if (reviewIndex === null) {
+                document.getElementById('detailContainer').innerHTML = '<p style="text-align: center; color: #E07A5F;">잘못된 접근입니다. 목록에서 후기를 선택해주세요.</p>';
+                return;
+            }
+
+            // 구글 스프레드시트에서 전체 데이터 가져오기
+            fetch(WEB_APP_URL)
+                .then(response => response.json())
+                .then(data => {
+                    const review = data[reviewIndex]; // 해당 번호의 후기 데이터 콕 집어내기
+
+                    if (!review) {
+                        document.getElementById('detailContainer').innerHTML = '<p style="text-align: center; color: #E07A5F;">해당 후기를 찾을 수 없습니다.</p>';
+                        return;
+                    }
+
+                    // 별점 만들기
+                    let stars = '';
+                    const ratingNum = Number(review.rating) || 0;
+                    for (let i = 0; i < 5; i++) {
+                        stars += (i < ratingNum) ? '<span class="star-icon filled">★</span>' : '<span class="star-icon">★</span>';
+                    }
+
+                    // 상세 화면 HTML 그리기
+                    const container = document.getElementById('detailContainer');
+                    container.innerHTML = `
+                        <h2 style="color: #3A5A40; margin-top: 0; font-size: 1.8rem;">${review.title}</h2>
+                        <p class="card-author">작성자: ${review.author}</p>
+                        <p class="card-date">작성일: ${review.date}</p>
+                        
+                        <div class="detail-rating" style="margin: 15px 0 25px 0;">
+                            ${stars} <span style="font-weight: bold; margin-left: 5px; color: #3A5A40;">(${review.rating}점 만점)</span>
+                        </div>
+
+                        <div class="detail-section">
+                            <h3>후기 내용</h3>
+                            <div class="review-text" style="white-space: pre-line; line-height: 1.6; color: #34495E;">${review.content}</div>
+                        </div>
+                    `;
+                })
+                .catch(error => {
+                    console.error('상세 데이터를 불러오는 중 에러 발생:', error);
+                    document.getElementById('detailContainer').innerHTML = '<p style="text-align: center; color: #E07A5F;">데이터를 불러오지 못했습니다.</p>';
+                });
+        });
+    </script>
 </body>
 </html>

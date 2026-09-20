@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>나만의 책 기록장 :: 따뜻한 서재</title>
-    <!-- style.css 파일을 정상적으로 불러오기 위한 연결 링크 -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,7 +20,6 @@
         </div>
 
         <div class="review-list" id="reviewList">
-            <!-- 자바스크립트로 구글 스프레드시트 데이터를 여기에 불러와서 넣어줍니다 -->
             <p style="text-align: center; color: #588157;">데이터를 불러오는 중입니다...</p>
         </div>
 
@@ -66,6 +64,7 @@
 
                 const card = document.createElement('div');
                 card.className = 'review-card';
+                // [수정됨] 자세히 보기 클릭 시 몇 번째 글인지 index 번호표를 주소 뒤에 붙여서 전달 (detail.html?index=0 등)
                 card.innerHTML = `
                     <div class="card-content" style="width: 100%;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
@@ -76,7 +75,7 @@
                         <p class="card-date">작성일: ${review.date}</p>
                         <p class="card-preview">${review.content}</p>
                         <div class="card-actions">
-                            <a href="detail.html" class="btn-detail">자세히 보기</a>
+                            <a href="detail.html?index=${index}" class="btn-detail">자세히 보기</a>
                         </div>
                     </div>
                 `;
