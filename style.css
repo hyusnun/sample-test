@@ -86,6 +86,7 @@ header p {
     gap: 20px;
 }
 
+/* 🌟 후기 카드 공통 디자인 (글자 수와 무관하게 깔끔하게 정돈) */
 .review-card {
     background-color: #FFFFFF; /* 카드 배경을 순백색으로 주어 배경과 확실히 분리 */
     border-radius: 12px;
@@ -99,6 +100,7 @@ header p {
 
 .card-content {
     flex: 1;
+    overflow: hidden; /* 내용이 넘칠 때 깔끔하게 숨김 처리 */
 }
 
 .card-content h3 {
@@ -120,11 +122,20 @@ header p {
     margin: 0 0 10px 0;
 }
 
+/* 🌟 본문 미리보기 글자 수 제한 (최대 3줄까지만 보여주고 이후는 말줄임표 처리) */
 .card-preview {
     font-size: 0.95rem;
     margin-bottom: 15px;
-    line-height: 1.4;
+    line-height: 1.5;
     color: #34495E;
+    
+    /* 웹킷 기반 브라우저에서 3줄 초과 시 ... 처리 */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 4.5em; /* 3줄 높이 고정 */
 }
 
 .card-actions {
@@ -185,7 +196,7 @@ header p {
     font-weight: bold;
 }
 
-/* 책 후기 본문 영역을 독립된 흰색 카드 박스로 포장 */
+/* 책 후기 본문 영역 (상세 보기에서는 전체 내용이 다 나와야 하므로 높이 제한 없음) */
 .detail-content {
     background-color: #FFFFFF; 
     padding: 30px;
@@ -222,7 +233,7 @@ header p {
     color: #F4A261; /* 눈에 띄고 따뜻한 골드 오렌지 별점 */
 }
 
-/* 💬 방문자 댓글 영역 디자인 (후기 본문과 확실하게 분리) */
+/* 💬 방문자 댓글 영역 디자인 */
 .comment-area {
     background-color: #FFFFFF;
     padding: 30px;
@@ -239,12 +250,11 @@ header p {
     margin-bottom: 25px;
 }
 
-/* 개별 댓글 카드 박스 */
 .comment {
-    background-color: #F4F7F2; /* 연한 파스텔 크림-그린 배경으로 댓글 구분 */
+    background-color: #F4F7F2; 
     padding: 15px;
     border-radius: 8px;
-    border-left: 4px solid #588157; /* 왼쪽 포인트 바 */
+    border-left: 4px solid #588157; 
 }
 
 .comment-user {
