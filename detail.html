@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>따뜻한 나의 책장 - 상세 보기</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container detail-container">
+        <!-- 상단 네비게이션 -->
+        <nav class="nav-back">
+            <a href="index.html" class="btn back-btn">&larr; 홈으로 돌아가기</a>
+            <div class="manage-btns">
+                <a href="edit.html" class="btn edit-btn">수정하기</a>
+                <button class="btn delete-btn">삭제하기</button>
+            </div>
+        </nav>
+
+        <!-- 책 상세 정보 카드 -->
+        <article class="detail-card">
+            <div class="detail-header-section">
+                <div class="detail-cover-placeholder">
+                    <span>📚 책 표지 이미지</span>
+                </div>
+                <div class="detail-title-box">
+                    <span class="badge">독서 기록</span>
+                    <h1 class="book-title-large">어린 왕자</h1>
+                    <div class="book-meta-large">
+                        <span><strong>작성자:</strong> 김철수</span>
+                        <span><strong>작성일:</strong> 2026-06-01</span>
+                    </div>
+                    <div class="rating-large">⭐⭐⭐⭐⭐ (5점 만점)</div>
+                </div>
+            </div>
+
+            <!-- 내용 -->
+            <div class="content-section">
+                <h3>후기 내용</h3>
+                <p class="content-text">
+                    어릴 때 읽었을 때와 다 큰 지금 읽었을 때의 느낌이 완전히 다른 책이다. 바쁜 일상 속에서 잊고 살았던 소중한 가치들에 대해 깊이 생각해보게 만들어 주었다. 여우가 어린 왕자에게 해준 말이 머릿속에서 오래도록 남는 감동적인 독서였다.
+                </p>
+            </div>
+
+            <!-- 좋았던 구절 -->
+            <div class="quotes-section">
+                <h3>💡 좋았던 구절</h3>
+                <div class="quote-box">
+                    <p class="quote-text">"가장 중요한 것은 눈에 보이지 않아. 마음으로 봐야만 잘 볼 수 있다는 거야."</p>
+                    <span class="quote-page">p. 82</span>
+                </div>
+                <div class="quote-box">
+                    <p class="quote-text">"네가 네 장미를 그렇게 소중하게 만든 건, 그 장미를 위해 네가 흘린 시간 때문이야."</p>
+                    <span class="quote-page">p. 114</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- 댓글 영역 -->
+        <section class="comments-section">
+            <h3>💬 방문자 댓글</h3>
+            <div class="comment-list">
+                <div class="comment-item">
+                    <span class="comment-author">영희</span>
+                    <p class="comment-content">와, 저도 정말 좋아하는 책이에요! 구절 내용이 참 마음에 와닿네요.</p>
+                    <span class="comment-date">2026-06-02</span>
+                </div>
+                <div class="comment-item">
+                    <span class="comment-author">민수</span>
+                    <p class="comment-content">후기 깔끔하게 잘 쓰셨네요. 저도 다시 읽어봐야겠어요.</p>
+                    <span class="comment-date">2026-06-03</span>
+                </div>
+            </div>
+
+            <!-- 댓글 입력창 -->
+            <div class="comment-form">
+                <input type="text" placeholder="이름을 입력하세요" class="comment-name-input" />
+                <textarea placeholder="따뜻한 댓글을 남겨주세요..." class="comment-textarea"></textarea>
+                <button class="btn primary-btn comment-submit">댓글 등록</button>
+            </div>
+        </section>
+
+        <!-- 푸터 -->
+        <footer class="footer">
+            <p>&copy; 2026 따뜻한 나의 책장. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>따뜻한 나의 책장 - 메인</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 영역 -->
+        <header class="header">
+            <h1 class="logo">📖 따뜻한 나의 책장</h1>
+            <p class="subtitle">읽은 책들을 기록하고 마음을 나누는 공간입니다.</p>
+        </header>
+
+        <!-- 검색 및 작성 버튼 영역 -->
+        <div class="action-bar">
+            <div class="search-box">
+                <input type="text" placeholder="책 제목이나 작성자를 검색해보세요..." />
+                <button class="btn search-btn">검색</button>
+            </div>
+            <a href="write.html" class="btn primary-btn">+ 새 후기 작성</a>
+        </div>
+
+        <!-- 후기 목록 카드 영역 (예시 2개) -->
+        <main class="book-grid">
+            <!-- 카드 1 -->
+            <article class="book-card">
+                <div class="book-cover-placeholder">
+                    <span>📚 책 표지 이미지</span>
+                </div>
+                <div class="book-info">
+                    <div class="book-meta">
+                        <span class="author">김철수</span>
+                        <span class="date">2026-06-01</span>
+                    </div>
+                    <h2 class="book-title">어린 왕자</h2>
+                    <div class="rating">⭐⭐⭐⭐⭐ (5/5)</div>
+                    <p class="book-snippet">"가장 중요한 건 눈에 보이지 않아..." 마음이 따뜻해지는 클래식 명작.</p>
+                    <a href="detail.html" class="btn text-btn">자세히 보기 &rarr;</a>
+                </div>
+            </article>
+
+            <!-- 카드 2 -->
+            <article class="book-card">
+                <div class="book-cover-placeholder">
+                    <span>📚 책 표지 이미지</span>
+                </div>
+                <div class="book-info">
+                    <div class="book-meta">
+                        <span class="author">김철수</span>
+                        <span class="date">2026-06-05</span>
+                    </div>
+                    <h2 class="book-title">불편한 편의점</h2>
+                    <div class="rating">⭐⭐⭐⭐ (4/5)</div>
+                    <p class="book-snippet">우리 이웃들의 소소한 일상 속에서 피어나는 위로와 감동의 이야기.</p>
+                    <a href="detail.html" class="btn text-btn">자세히 보기 &rarr;</a>
+                </div>
+            </article>
+        </main>
+
+        <!-- 푸터 -->
+        <footer class="footer">
+            <p>&copy; 2026 따뜻한 나의 책장. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>따뜻한 나의 책장 - 후기 수정</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container detail-container">
+        <!-- 상단 네비게이션 -->
+        <nav class="nav-back">
+            <a href="detail.html" class="btn back-btn">&larr; 상세 화면으로 돌아가기</a>
+        </nav>
+
+        <!-- 수정 폼 카드 (기존 내용이 채워져 있음) -->
+        <article class="detail-card">
+            <h1 class="book-title-large" style="margin-bottom: 25px;">✏️ 책 후기 수정하기</h1>
+            
+            <form class="write-form">
+                <div class="form-group">
+                    <label>책 제목</label>
+                    <input type="text" value="어린 왕자" class="form-input" />
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>작성자</label>
+                        <input type="text" value="김철수" class="form-input" />
+                    </div>
+                    <div class="form-group">
+                        <label>작성일</label>
+                        <input type="date" value="2026-06-01" class="form-input" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>책 표지 이미지 재선택</label>
+                        <input type="file" class="form-file" />
+                    </div>
+                    <div class="form-group">
+                        <label>별점 (5점 만점)</label>
+                        <select class="form-input">
+                            <option value="5" selected>⭐⭐⭐⭐⭐ (5점)</option>
+                            <option value="4">⭐⭐⭐⭐ (4점)</option>
+                            <option value="3">⭐⭐⭐ (3점)</option>
+                            <option value="2">⭐⭐ (2점)</option>
+                            <option value="1">⭐ (1점)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>후기 내용</label>
+                    <textarea class="form-textarea" style="min-height: 150px;">어릴 때 읽었을 때와 다 큰 지금 읽었을 때의 느낌이 완전히 다른 책이다. 바쁜 일상 속에서 잊고 살았던 소중한 가치들에 대해 깊이 생각해보게 만들어 주었다. 여우가 어린 왕자에게 해준 말이 머릿속에서 오래도록 남는 감동적인 독서였다.</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>💡 좋았던 구절</label>
+                    <div class="quote-input-row" style="margin-bottom: 8px;">
+                        <input type="text" value="p. 82" class="form-input" style="width: 120px;" />
+                        <input type="text" value="가장 중요한 것은 눈에 보이지 않아. 마음으로 봐야만 잘 볼 수 있다는 거야." class="form-input" style="flex: 1;" />
+                    </div>
+                    <div class="quote-input-row">
+                        <input type="text" value="p. 114" class="form-input" style="width: 120px;" />
+                        <input type="text" value="네가 네 장미를 그렇게 소중하게 만든 건, 그 장미를 위해 네가 흘린 시간 때문이야." class="form-input" style="flex: 1;" />
+                    </div>
+                </div>
+
+                <div class="form-actions" style="margin-top: 30px; text-align: right;">
+                    <a href="detail.html" class="btn back-btn">취소</a>
+                    <button type="submit" class="btn primary-btn">수정 완료</button>
+                </div>
+            </form>
+        </article>
+
+        <!-- 푸터 -->
+        <footer class="footer">
+            <p>&copy; 2026 따뜻한 나의 책장. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
