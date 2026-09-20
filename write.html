@@ -19,8 +19,9 @@
         </div>
 
         <div class="detail-content">
-            <!-- 폼 입력 영역 -->
-            <form id="writeForm">
+            <!-- CORS 오류를 완벽히 우회하기 위해 숨겨진 iframe을 타겟으로 지정한 폼 -->
+            <form id="writeForm" action="https://script.google.com/macros/s/AKfycbwGguvOZqgbJm09TPtCbWwvyLItvOMZvpLeDxuza-JKE6hVFeQ00ykVMXnkB6kP5sI/exec" method="POST" target="hidden_iframe">
+                
                 <div class="form-group">
                     <label for="title">책 제목</label>
                     <input type="text" id="title" name="title" placeholder="읽은 책 제목을 입력하세요" required>
@@ -51,6 +52,9 @@
                     <button type="submit" class="btn-save" id="saveBtn">저장하기</button>
                 </div>
             </form>
+
+            <!-- 화면에 보이지 않게 데이터를 전송하기 위한 숨김 아이프레임 -->
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="submitted=true;"></iframe>
         </div>
 
         <footer>
@@ -59,41 +63,18 @@
     </div>
 
     <script>
-        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwGguvOZqgbJm09TPtCbWwvyLItvOMZvpLeDxuza-JKE6hVFeQ00ykVMXnkB6kP5sI/exec";
+        let submitted = false;
 
-        document.getElementById('writeForm').addEventListener('submit', function(event) {
-            event.preventDefault(); 
-
+        document.getElementById('writeForm').addEventListener('submit', function() {
             const saveBtn = document.getElementById('saveBtn');
             saveBtn.innerText = '저장 중...';
             saveBtn.disabled = true;
 
-            const formData = {
-                title: document.getElementById('title').value,
-                author: document.getElementById('author').value,
-                rating: document.getElementById('rating').value,
-                content: document.getElementById('content').value
-            };
-
-            fetch(WEB_APP_URL, {
-                method: 'POST',
-                mode: 'no-cors', // GitHub Pages 환경에서 CORS 차단을 우회하기 위한 설정
-                headers: {
-                    'Content-Type': 'text/plain;charset=utf-8',
-                },
-                body: JSON.stringify(formData)
-            })
-            .then(() => {
-                // no-cors 모드에서는 응답 내용을 직접 읽을 수 없으므로 성공으로 처리하고 메인으로 이동
+            // 저장 요청 후 1.5초 뒤에 메인 페이지로 부드럽게 이동
+            setTimeout(function() {
                 alert('성공적으로 저장되었습니다!');
                 window.location.href = 'index.html';
-            })
-            .catch(error => {
-                console.error('저장 중 에러 발생:', error);
-                alert('저장에 실패했습니다. 다시 시도해주세요.');
-                saveBtn.innerText = '저장하기';
-                saveBtn.disabled = false;
-            });
+            }, 1500);
         });
     </script>
 </body>
