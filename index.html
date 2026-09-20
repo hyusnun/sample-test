@@ -32,18 +32,30 @@
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxDDjiATJpE1CEigpbiCgMxOsMB28Zf4nIfag6M6yZb2jZTrW4gPhygxo9kQs9b4bY/exec";
 
         let allReviews = []; 
+        let allCommentsMap = {}; // 각 책 인덱스별 댓글 개수를 담아둘 통계 상자
 
         window.addEventListener('DOMContentLoaded', function() {
-            fetch(WEB_APP_URL)
-                .then(response => response.json())
-                .then(data => {
-                    allReviews = data;
-                    displayReviews(allReviews);
-                })
-                .catch(error => {
-                    console.error('데이터를 불러오는 중 에러 발생:', error);
-                    document.getElementById('reviewList').innerHTML = '<p style="text-align: center; color: #E07A5F;">데이터를 불러오지 못했습니다. 주소를 확인해주세요.</p>';
+            // 1. 책 후기 목록과 전체 댓글 목록을 동시에 불러오기
+            Promise.all([
+                fetch(WEB_APP_URL).then(res => res.json()),
+                fetch(`${WEB_APP_URL}?action=getAllComments`).then(res => res.json()).catch(() => [])
+            ])
+            .then(([reviews, comments]) => {
+                allReviews = reviews;
+
+                // 댓글 데이터를 책 번호(reviewIndex)별로 개수 세기
+                allCommentsMap = {};
+                comments.forEach(c => {
+                    const idx = String(c.reviewIndex);
+                    allCommentsMap[idx] = (allCommentsMap[idx] || 0) + 1;
                 });
+
+                displayReviews(allReviews);
+            })
+            .catch(error => {
+                console.error('데이터를 불러오는 중 에러 발생:', error);
+                document.getElementById('reviewList').innerHTML = '<p style="text-align: center; color: #E07A5F;">데이터를 불러오지 못했습니다. 주소를 확인해주세요.</p>';
+            });
         });
 
         function displayReviews(reviews) {
@@ -62,15 +74,21 @@
                     stars += (i < ratingNum) ? '<span class="star-icon filled">★</span>' : '<span class="star-icon">★</span>';
                 }
 
-                // 날짜 데이터에서 'T' 앞부분(YYYY-MM-DD)만 깔끔하게 잘라내기
                 let formattedDate = review.date ? review.date.toString().split('T')[0] : '';
+                
+                // 해당 책에 달린 댓글 개수 가져오기 (없으면 0개)
+                const commentCount = allCommentsMap[index] || 0;
+                // 댓글이 1개 이상일 때만 표시할 뱃지 HTML 생성
+                const commentBadge = commentCount > 0 
+                    ? `<span style="background-color: #F4F7F2; color: #3A5A40; border: 1px solid #A3B18A; padding: 3px 8px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; margin-left: 10px;">💬 댓글 ${commentCount}</span>` 
+                    : '';
 
                 const card = document.createElement('div');
                 card.className = 'review-card';
                 card.innerHTML = `
                     <div class="card-content" style="width: 100%;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                            <h3 style="margin: 0; color: #3A5A40;">${review.title}</h3>
+                            <h3 style="margin: 0; color: #3A5A40;">${review.title} ${commentBadge}</h3>
                             <div>${stars}</div>
                         </div>
                         <p class="card-author">작성자: ${review.author}</p>
