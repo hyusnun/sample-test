@@ -19,7 +19,6 @@
         </div>
 
         <div class="detail-content">
-            <!-- 폼 입력 영역 -->
             <form id="writeForm">
                 <div class="form-group">
                     <label for="title">책 제목</label>
@@ -59,8 +58,7 @@
     </div>
 
     <script>
-        // 새로 전달해주신 구글 앱스 스크립트 웹앱 주소
-        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwDzjC4Yfaz0jN6fSKEQe05zggbDL-pkO_Hzp4XupI9NH3UToArEFrCZrxlpQyaFcw/exec";
+        const API_URL = '/api/reviews';
 
         document.getElementById('writeForm').addEventListener('submit', function(event) {
             event.preventDefault(); 
@@ -69,32 +67,30 @@
             saveBtn.innerText = '저장 중...';
             saveBtn.disabled = true;
 
-            // 입력한 값들을 객체로 묶기
             const formData = {
                 title: document.getElementById('title').value,
                 author: document.getElementById('author').value,
-                rating: document.getElementById('rating').value,
+                score: document.getElementById('rating').value, // 별점 값 매칭
                 content: document.getElementById('content').value
             };
 
-            // text/plain 방식으로 POST 전송하여 앱스 스크립트 doPost와 통신
-            fetch(WEB_APP_URL, {
+            fetch(API_URL, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'text/plain;charset=utf-8',
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(formData)
             })
             .then(response => response.json())
             .then(data => {
-                alert('성공적으로 저장되었습니다!');
-                window.location.href = 'index.html'; // 저장 후 메인으로 이동
+                alert('노션에 성공적으로 저장되었습니다!');
+                window.location.href = 'index.html';
             })
             .catch(error => {
                 console.error('저장 중 에러 발생:', error);
-                // 통신 과정의 사소한 응답 파싱 에러와 상관없이 데이터는 시트에 정상 기록됩니다.
-                alert('성공적으로 저장되었습니다!');
-                window.location.href = 'index.html';
+                alert('저장 중 오류가 발생했습니다.');
+                saveBtn.innerText = '저장하기';
+                saveBtn.disabled = false;
             });
         });
     </script>

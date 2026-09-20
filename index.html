@@ -20,7 +20,7 @@
         </div>
 
         <div class="review-list" id="reviewList">
-            <p style="text-align: center; color: #588157;">데이터를 불러오는 중입니다...</p>
+            <p style="text-align: center; color: #588157;">노션에서 데이터를 불러오는 중입니다...</p>
         </div>
 
         <footer>
@@ -29,34 +29,20 @@
     </div>
 
     <script>
-        // 새로 발급받으신 웹앱 주소 반영
-        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyJX6K_Vm40FQfAK-gV6Itlwqx3EPwu2N3xtP4MXkkU0Jop8B5KwWHfikKCTv56zGY/exec";
-
+        const API_URL = '/api/reviews';
         let allReviews = []; 
-        let allCommentsMap = {}; 
 
         window.addEventListener('DOMContentLoaded', function() {
-            // 책 후기 목록과 전체 댓글 목록을 동시에 가져옴
-            Promise.all([
-                fetch(WEB_APP_URL).then(res => res.json()),
-                fetch(`${WEB_APP_URL}?action=getAllComments`).then(res => res.json()).catch(() => [])
-            ])
-            .then(([reviews, comments]) => {
-                allReviews = reviews;
-
-                // 책 번호(reviewIndex)별 댓글 개수 카운팅
-                allCommentsMap = {};
-                comments.forEach(c => {
-                    const idx = String(c.reviewIndex);
-                    allCommentsMap[idx] = (allCommentsMap[idx] || 0) + 1;
+            fetch(API_URL)
+                .then(response => response.json())
+                .then(data => {
+                    allReviews = data;
+                    displayReviews(allReviews);
+                })
+                .catch(error => {
+                    console.error('데이터를 불러오는 중 에러 발생:', error);
+                    document.getElementById('reviewList').innerHTML = '<p style="text-align: center; color: #E07A5F;">데이터를 불러오지 못했습니다.</p>';
                 });
-
-                displayReviews(allReviews);
-            })
-            .catch(error => {
-                console.error('데이터를 불러오는 중 에러 발생:', error);
-                document.getElementById('reviewList').innerHTML = '<p style="text-align: center; color: #E07A5F;">데이터를 불러오지 못했습니다. 주소를 확인해주세요.</p>';
-            });
         });
 
         function displayReviews(reviews) {
@@ -68,34 +54,28 @@
                 return;
             }
 
-            reviews.forEach((review, index) => {
+            reviews.forEach((review) => {
+                // 별점(score) 숫자를 받아 별 모양 문자열로 변환 (예: 5점이면 ★★★★★)
                 let stars = '';
-                const ratingNum = Number(review.rating) || 0;
+                const scoreNum = Number(review.score) || 5;
                 for (let i = 0; i < 5; i++) {
-                    stars += (i < ratingNum) ? '<span class="star-icon filled">★</span>' : '<span class="star-icon">★</span>';
+                    stars += (i < scoreNum) ? '<span class="star-icon filled">★</span>' : '<span class="star-icon">★</span>';
                 }
-
-                let formattedDate = review.date ? review.date.toString().split('T')[0] : '';
-                
-                // 해당 책에 달린 댓글 개수 확인
-                const commentCount = allCommentsMap[index] || 0;
-                const commentBadge = commentCount > 0 
-                    ? `<span style="background-color: #F4F7F2; color: #3A5A40; border: 1px solid #A3B18A; padding: 3px 8px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; margin-left: 10px;">💬 댓글 ${commentCount}</span>` 
-                    : '';
 
                 const card = document.createElement('div');
                 card.className = 'review-card';
+                // 노션 고유 페이지 ID(review.id)를 상세 페이지로 전달
                 card.innerHTML = `
                     <div class="card-content" style="width: 100%;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                            <h3 style="margin: 0; color: #3A5A40;">${review.title} ${commentBadge}</h3>
+                            <h3 style="margin: 0; color: #3A5A40;">${review.title}</h3>
                             <div>${stars}</div>
                         </div>
                         <p class="card-author">작성자: ${review.author}</p>
-                        <p class="card-date">작성일: ${formattedDate}</p>
+                        <p class="card-date">작성일: ${review.date}</p>
                         <p class="card-preview">${review.content}</p>
                         <div class="card-actions">
-                            <a href="detail.html?index=${index}" class="btn-detail">자세히 보기</a>
+                            <a href="detail.html?id=${review.id}" class="btn-detail">자세히 보기</a>
                         </div>
                     </div>
                 `;
