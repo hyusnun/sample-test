@@ -1,435 +1,405 @@
-/* 공통 스타일 및 파스텔 녹색 & 크림색 감성 설정 /
-:root {
---bg-color: #f7f9f4;         / 아주 연한 파스텔 크림-그린 베이스 /
---card-bg: #ffffff;          / 깔끔한 흰색 카드 /
---text-main: #3b4d3c;        / 차분한 진한 녹갈색 텍스트 /
---text-sub: #758a76;         / 부드러운 회녹색 서브 텍스트 /
---primary: #87a987;          / 눈이 편안한 파스텔톤 녹색 /
---primary-hover: #6e8e6e;    / 진한 파스텔 녹색 (버튼 호버용) /
---accent: #eef2e6;           / 은은한 크림-그린 포인트 박스 색상 /
---border-color: #dbe4d5;     / 부드러운 테두리 선 색상 /
---danger: #d98880;           / 부드러운 톤의 삭제 버튼 색상 */
-}
-
-{
-box-sizing: border-box;
-margin: 0;
-padding: 0;
-}
-
+/* 기본 스타일 (파스텔톤 녹색과 크림색 조합) */
 body {
-font-family: 'Noto Sans KR', sans-serif;
-background-color: var(--bg-color);
-color: var(--text-main);
-line-height: 1.6;
-padding: 40px 20px;
+    font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+    background-color: #F0F4ED; /* 아주 연한 파스텔 크림빛 녹색 배경 */
+    color: #2F3E35; /* 진한 딥그린 텍스트 (눈이 편안함) */
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-max-width: 900px;
-margin: 0 auto;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-/* 헤더 */
-.header {
-text-align: center;
-margin-bottom: 40px;
+header {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-.logo {
-font-family: 'Noto Serif KR', serif;
-font-size: 2.2rem;
-color: var(--text-main);
-margin-bottom: 8px;
+header h1 {
+    color: #3A5A40; /* 차분하고 예쁜 진한 녹색 제목 */
+    margin-bottom: 10px;
 }
 
-.subtitle {
-color: var(--text-sub);
-font-size: 1rem;
+header p {
+    color: #588157;
 }
 
-/* 액션 바 (검색 및 작성버튼) */
-.action-bar {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 30px;
-gap: 15px;
-flex-wrap: wrap;
+/* 메인 화면 검색 영역 */
+.search-area {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    align-items: center;
 }
 
-.search-box {
-display: flex;
-flex: 1;
-max-width: 450px;
-gap: 8px;
+.search-area input {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #A3B18A; /* 구분감이 뚜렷한 녹색 테두리 */
+    border-radius: 8px;
+    background-color: #FFFFFF; /* 흰색 배경으로 입력창 강조 */
+    color: #2F3E35;
+    font-size: 1rem;
 }
 
-.search-box input {
-flex: 1;
-padding: 10px 15px;
-border: 1px solid var(--border-color);
-border-radius: 8px;
-background-color: var(--card-bg);
-color: var(--text-main);
+.search-area input::placeholder {
+    color: #8D99AE;
 }
 
-.btn {
-padding: 10px 18px;
-border-radius: 8px;
-border: none;
-cursor: pointer;
-font-weight: 500;
-text-decoration: none;
-display: inline-block;
-transition: background 0.2s;
-font-size: 0.95rem;
+.btn-search, .btn-write, .btn-back {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
 }
 
-.primary-btn {
-background-color: var(--primary);
-color: white;
+.btn-search {
+    background-color: #3A5A40;
+    color: #FFFFFF;
 }
 
-.primary-btn:hover {
-background-color: var(--primary-hover);
+.btn-search:hover, .btn-write:hover, .btn-back:hover {
+    opacity: 0.9;
 }
 
-.search-btn {
-background-color: #d0e1d4;
-color: #3b4d3c;
+.btn-write {
+    background-color: #588157; /* 산뜻한 포인트 녹색 */
+    color: #FFFFFF;
+    margin-left: auto;
 }
 
-.search-btn:hover {
-background-color: #b8d2bd;
+.btn-back {
+    background-color: #CCD5AE;
+    color: #3A5A40;
+    margin-right: 10px;
 }
 
-/* 책 목록 카드 레이아웃 */
-.book-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-gap: 25px;
-margin-bottom: 50px;
+/* 메인 화면 후기 목록 */
+.review-list {
+    display: grid;
+    gap: 20px;
 }
 
-.book-card {
-background-color: var(--card-bg);
-border-radius: 12px;
-overflow: hidden;
-box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-border: 1px solid var(--border-color);
-display: flex;
-flex-direction: column;
+.review-card {
+    background-color: #FFFFFF; /* 카드 배경을 순백색으로 주어 배경과 확실히 분리 */
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(58, 90, 64, 0.08); /* 부드러운 초록빛 그림자 */
+    display: flex; 
+    gap: 20px;
+    align-items: start; 
+    border: 1px solid #D8E2DC; /* 카드 테두리 선 추가로 구분감 업 */
 }
 
-.book-cover-placeholder {
-width: 100%;
-height: 180px;
-background-color: var(--accent);
-display: flex;
-align-items: center;
-justify-content: center;
-color: var(--text-sub);
-font-size: 0.95rem;
+/* 책 표지 이미지 (메인) */
+.card-cover {
+    width: 100px; 
+    height: 150px; 
+    object-fit: cover; 
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.book-info {
-padding: 20px;
-display: flex;
-flex-direction: column;
-flex: 1;
+.card-content {
+    flex: 1;
 }
 
-.book-meta {
-display: flex;
-justify-content: space-between;
-font-size: 0.85rem;
-color: var(--text-sub);
-margin-bottom: 8px;
+.card-content h3 {
+    margin: 0 0 5px 0;
+    color: #3A5A40;
+    font-size: 1.2rem;
 }
 
-.book-title {
-font-family: 'Noto Serif KR', serif;
-font-size: 1.3rem;
-margin-bottom: 8px;
-color: var(--text-main);
+.card-author {
+    font-size: 0.9rem;
+    color: #588157;
+    margin: 0 0 5px 0;
+    font-weight: bold;
 }
 
-.rating {
-font-size: 0.9rem;
-margin-bottom: 12px;
+.card-date {
+    font-size: 0.8rem;
+    color: #7F8C8D;
+    margin: 0 0 10px 0;
 }
 
-.book-snippet {
-font-size: 0.9rem;
-color: var(--text-sub);
-margin-bottom: 20px;
-flex: 1;
+.card-preview {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    color: #34495E;
 }
 
-.text-btn {
-background: none;
-color: var(--primary);
-padding: 0;
-font-weight: 600;
+.card-actions {
+    text-align: right;
 }
 
-.text-btn:hover {
-text-decoration: underline;
-color: var(--primary-hover);
+.btn-detail {
+    background-color: #A3B18A; 
+    color: #FFFFFF;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
 }
 
-/* 상세 페이지 스타일 */
-.detail-container {
-max-width: 750px;
+.btn-detail:hover {
+    background-color: #588157;
 }
 
-.nav-back {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 20px;
+/* 상세 보기 화면 */
+.detail-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #D8E2DC;
 }
 
-.back-btn {
-background-color: #d0e1d4;
-color: var(--text-main);
+.detail-header h2 {
+    margin: 0;
+    color: #3A5A40;
 }
 
-.manage-btns {
-display: flex;
-gap: 8px;
+.detail-buttons {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
 }
 
-.edit-btn {
-background-color: #eef2e6;
-color: var(--text-main);
-font-size: 0.85rem;
-padding: 6px 12px;
+.btn-edit {
+    background-color: #588157;
+    color: #FFFFFF;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
 }
 
-.delete-btn {
-background-color: #f7e6e5;
-color: var(--danger);
-font-size: 0.85rem;
-padding: 6px 12px;
+.btn-delete {
+    background-color: #E07A5F; /* 따뜻한 코랄빛 톤의 삭제 버튼 */
+    color: #FFFFFF;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
 }
 
-.detail-card {
-background-color: var(--card-bg);
-border-radius: 12px;
-padding: 30px;
-box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-border: 1px solid var(--border-color);
-margin-bottom: 30px;
+.detail-content {
+    background-color: #FFFFFF; /* 상세 내용 박스도 순백색으로 구분 */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(58, 90, 64, 0.08);
+    border: 1px solid #D8E2DC;
 }
 
-.detail-header-section {
-display: flex;
-gap: 25px;
-margin-bottom: 30px;
-align-items: center;
-flex-wrap: wrap;
+/* 상세 보기 책 정보 영역 */
+.detail-main-info {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #E9ECEF;
 }
 
-.detail-cover-placeholder {
-width: 140px;
-height: 180px;
-background-color: var(--accent);
-border-radius: 8px;
-display: flex;
-align-items: center;
-justify-content: center;
-text-align: center;
-color: var(--text-sub);
-font-size: 0.85rem;
-padding: 10px;
+/* 책 표지 이미지 (상세) */
+.detail-cover {
+    width: 160px; 
+    height: 240px; 
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-.detail-title-box {
-flex: 1;
+.detail-text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 1.05rem;
 }
 
-.badge {
-background-color: var(--accent);
-padding: 4px 8px;
-border-radius: 4px;
-font-size: 0.75rem;
-color: var(--text-main);
-font-weight: 500;
+.detail-text p {
+    margin: 0;
 }
 
-.book-title-large {
-font-family: 'Noto Serif KR', serif;
-font-size: 1.8rem;
-margin: 10px 0;
+.detail-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
 }
 
-.book-meta-large {
-display: flex;
-gap: 20px;
-color: var(--text-sub);
-font-size: 0.9rem;
-margin-bottom: 10px;
+.star-icon {
+    color: #D8E2DC; 
+    font-size: 1.3rem;
 }
 
-.rating-large {
-font-size: 1rem;
+.star-icon.filled {
+    color: #F4A261; /* 눈에 띄고 따뜻한 골드 오렌지 별점 */
 }
 
-.content-section, .quotes-section {
-margin-top: 30px;
-padding-top: 20px;
-border-top: 1px solid var(--border-color);
+.detail-section {
+    margin-bottom: 30px;
 }
 
-.content-section h3, .quotes-section h3 {
-font-family: 'Noto Serif KR', serif;
-margin-bottom: 12px;
-font-size: 1.2rem;
+.detail-section h3 {
+    color: #3A5A40;
+    margin-bottom: 15px;
+    border-left: 4px solid #588157;
+    padding-left: 10px;
+    font-size: 1.15rem;
 }
 
-.content-text {
-font-size: 1rem;
-color: var(--text-main);
-line-height: 1.8;
+.review-text {
+    line-height: 1.7;
+    color: #2F3E35;
 }
 
-.quote-box {
-background-color: var(--bg-color);
-border-left: 4px solid var(--primary);
-padding: 15px;
-border-radius: 0 8px 8px 0;
-margin-bottom: 12px;
-}
-
-.quote-text {
-font-style: italic;
-margin-bottom: 5px;
+.quote-item {
+    background-color: #F4F7F2; /* 아주 연한 파스텔 그린 톤의 구절 강조 박스 */
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    border-left: 5px solid #A3B18A; 
 }
 
 .quote-page {
-font-size: 0.85rem;
-color: var(--text-sub);
-display: block;
-text-align: right;
+    font-weight: bold;
+    color: #588157;
+    display: block;
+    margin-bottom: 5px;
 }
 
-/* 작성/수정 폼 스타일 */
-.write-form {
-display: flex;
-flex-direction: column;
-gap: 20px;
+.quote-text {
+    margin: 0;
+    font-style: italic;
+    color: #2F3E35;
 }
 
-.form-group {
-display: flex;
-flex-direction: column;
-gap: 8px;
-}
-
-.form-group label {
-font-weight: 500;
-font-size: 0.9rem;
-color: var(--text-main);
-}
-
-.form-input, .form-textarea {
-padding: 12px 15px;
-border: 1px solid var(--border-color);
-border-radius: 8px;
-background-color: var(--bg-color);
-color: var(--text-main);
-font-family: inherit;
-font-size: 0.95rem;
-}
-
-.form-file {
-padding: 8px 0;
-}
-
-.form-row {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 20px;
-}
-
-.quote-input-row {
-display: flex;
-gap: 10px;
-}
-
-/* 댓글 영역 스타일 */
-.comments-section {
-background-color: var(--card-bg);
-border-radius: 12px;
-padding: 30px;
-box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-border: 1px solid var(--border-color);
-}
-
-.comments-section h3 {
-font-family: 'Noto Serif KR', serif;
-margin-bottom: 20px;
-font-size: 1.2rem;
+/* 댓글 영역 */
+.comment-area {
+    margin-top: 40px;
+    border-top: 1px solid #E9ECEF;
+    padding-top: 25px;
 }
 
 .comment-list {
-margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
 }
 
-.comment-item {
-padding: 15px 0;
-border-bottom: 1px solid var(--border-color);
+.comment {
+    background-color: #F8F9FA;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #E9ECEF;
 }
 
-.comment-author {
-font-weight: 600;
-font-size: 0.9rem;
-margin-right: 10px;
+.comment-user {
+    font-weight: bold;
+    color: #3A5A40;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.comment-text {
+    margin: 0 0 5px 0;
+    color: #34495E;
 }
 
 .comment-date {
-font-size: 0.75rem;
-color: var(--text-sub);
+    font-size: 0.8rem;
+    color: #7F8C8D;
 }
 
-.comment-content {
-margin-top: 6px;
-font-size: 0.9rem;
-color: var(--text-main);
+.comment-input-group {
+    display: flex;
+    gap: 10px;
 }
 
-.comment-form {
-display: flex;
-flex-direction: column;
-gap: 10px;
+.comment-input-group input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #CCD5AE;
+    border-radius: 6px;
+    background-color: #FFFFFF;
 }
 
-.comment-name-input {
-padding: 10px;
-border: 1px solid var(--border-color);
-border-radius: 8px;
-max-width: 200px;
+.btn-add-comment {
+    background-color: #3A5A40;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.comment-textarea {
-padding: 12px;
-border: 1px solid var(--border-color);
-border-radius: 8px;
-resize: vertical;
-min-height: 80px;
-font-family: inherit;
+/* 폼 입력 페이지 공통 스타일 (작성 및 수정 화면) */
+.form-group {
+    margin-group: 20px;
+    margin-bottom: 20px;
 }
 
-.comment-submit {
-align-self: flex-end;
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #3A5A40;
 }
 
-/* 푸터 */
-.footer {
-text-align: center;
-margin-top: 40px;
-color: var(--text-sub);
-font-size: 0.85rem;
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #CCD5AE;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+    font-size: 1rem;
+    color: #2F3E35;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-actions {
+    text-align: right;
+    margin-top: 30px;
+}
+
+.btn-save {
+    background-color: #3A5A40;
+    color: #FFFFFF;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.btn-save:hover {
+    background-color: #588157;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #7F8C8D;
+    font-size: 0.9rem;
 }
