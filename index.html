@@ -3,68 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>따뜻한 나의 책장 - 메인</title>
+    <title>나만의 책 기록장 :: 따뜻한 서재</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <!-- 헤더 영역 -->
-        <header class="header">
-            <h1 class="logo">📖 따뜻한 나의 책장</h1>
-            <p class="subtitle">읽은 책들을 기록하고 마음을 나누는 공간입니다.</p>
+        <header>
+            <h1>📖 나만의 따뜻한 서재</h1>
+            <p>읽은 책들의 감동을 기록하는 공간입니다.</p>
         </header>
 
-        <!-- 검색 및 작성 버튼 영역 -->
-        <div class="action-bar">
-            <div class="search-box">
-                <input type="text" placeholder="책 제목이나 작성자를 검색해보세요..." />
-                <button class="btn search-btn">검색</button>
-            </div>
-            <a href="write.html" class="btn primary-btn">+ 새 후기 작성</a>
+        <div class="search-area">
+            <input type="text" id="searchInput" placeholder="책 제목 또는 작성자 검색...">
+            <button class="btn-search" onclick="searchReviews()">검색</button>
+            <a href="write.html" class="btn-write">새 글 쓰기</a>
         </div>
 
-        <!-- 후기 목록 카드 영역 (예시 2개) -->
-        <main class="book-grid">
-            <!-- 카드 1 -->
-            <article class="book-card">
-                <div class="book-cover-placeholder">
-                    <span>📚 책 표지 이미지</span>
-                </div>
-                <div class="book-info">
-                    <div class="book-meta">
-                        <span class="author">김철수</span>
-                        <span class="date">2026-06-01</span>
-                    </div>
-                    <h2 class="book-title">어린 왕자</h2>
-                    <div class="rating">⭐⭐⭐⭐⭐ (5/5)</div>
-                    <p class="book-snippet">"가장 중요한 건 눈에 보이지 않아..." 마음이 따뜻해지는 클래식 명작.</p>
-                    <a href="detail.html" class="btn text-btn">자세히 보기 &rarr;</a>
-                </div>
-            </article>
+        <div class="review-list" id="reviewList">
+            <!-- 자바스크립트로 구글 스프레드시트 데이터를 여기에 불러와서 넣어줍니다 -->
+            <p style="text-align: center; color: #588157;">데이터를 불러오는 중입니다...</p>
+        </div>
 
-            <!-- 카드 2 -->
-            <article class="book-card">
-                <div class="book-cover-placeholder">
-                    <span>📚 책 표지 이미지</span>
-                </div>
-                <div class="book-info">
-                    <div class="book-meta">
-                        <span class="author">김철수</span>
-                        <span class="date">2026-06-05</span>
-                    </div>
-                    <h2 class="book-title">불편한 편의점</h2>
-                    <div class="rating">⭐⭐⭐⭐ (4/5)</div>
-                    <p class="book-snippet">우리 이웃들의 소소한 일상 속에서 피어나는 위로와 감동의 이야기.</p>
-                    <a href="detail.html" class="btn text-btn">자세히 보기 &rarr;</a>
-                </div>
-            </article>
-        </main>
-
-        <!-- 푸터 -->
-        <footer class="footer">
-            <p>&copy; 2026 따뜻한 나의 책장. All rights reserved.</p>
+        <footer>
+            <p>&copy; 2026 따뜻한 서재 기록장. All rights reserved.</p>
         </footer>
     </div>
+
+    <script>
+        // 여러분이 알려주신 구글 앱스 스크립트 웹앱 주소
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwGguvOZqgbJm09TPtCbWwvyLItvOMZvpLeDxuza-JKE6hVFeQ00ykVMXnkB6kP5sI/exec";
+
+        let allReviews = []; // 전체 데이터를 담아둘 변수
+
+        // 웹페이지가 열리면 자동으로 실행되는 함수 (스프레드시트에서 데이터 가져오기)
+        window.addEventListener('DOMContentLoaded', function() {
+            fetch(WEB_APP_URL)
+                .then(response => response.json())
+                .then(data => {
+                    allReviews = data;
+                    displayReviews(allReviews);
+                })
+                .catch(error => {
+                    console.error('데이터를 불러오는 중 에러 발생:', error);
+                    document.getElementById('reviewList').innerHTML = '<p style="text-align: center; color: #E07A5F;">데이터를 불러오지 못했습니다. 주소를 확인해주세요.</p>';
+                });
+        });
+
+        // 화면에 후기 목록을 카드 형태로 그려주는 함수
+        function displayReviews(reviews) {
+            const reviewListEl = document.getElementById('reviewList');
+            reviewListEl.innerHTML = '';
+
+            if (reviews.length === 0) {
+                reviewListEl.innerHTML = '<p style="text-align: center; color: #7F8C8D;">등록된 책 후기가 없습니다. 첫 글을 작성해 보세요!</p>';
+                return;
+            }
+
+            reviews.forEach((review, index) => {
+                // 별점 만들기 (예: 5점이면 ★★★★★)
+                let stars = '';
+                const ratingNum = Number(review.rating) || 0;
+                for (let i = 0; i < 5; i++) {
+                    stars += (i < ratingNum) ? '<span class="star-icon filled">★</span>' : '<span class="star-icon">★</span>';
+                }
+
+                // 카드 HTML 만들기
+                const card = document.createElement('div');
+                card.className = 'review-card';
+                card.innerHTML = `
+                    <div class="card-content" style="width: 100%;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <h3 style="margin: 0; color: #3A5A40;">${review.title}</h3>
+                            <div>${stars}</div>
+                        </div>
+                        <p class="card-author">작성자: ${review.author}</p>
+                        <p class="card-date">작성일: ${review.date}</p>
+                        <p class="card-preview">${review.content}</p>
+                        <div class="card-actions">
+                            <a href="detail.html" class="btn-detail">자세히 보기</a>
+                        </div>
+                    </div>
+                `;
+                reviewListEl.appendChild(card);
+            });
+        }
+
+        // 검색 버튼을 눌렀을 때 실행되는 함수
+        function searchReviews() {
+            const keyword = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = allReviews.filter(review => {
+                const titleMatch = review.title && review.title.toLowerCase().includes(keyword);
+                const authorMatch = review.author && review.author.toLowerCase().includes(keyword);
+                return titleMatch || authorMatch;
+            });
+            displayReviews(filtered);
+        }
+    </script>
 </body>
 </html>

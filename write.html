@@ -3,79 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>따뜻한 나의 책장 - 새 후기 작성</title>
-    <link rel="stylesheet" href="style.css">a
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>새 후기 작성 :: 따뜻한 서재</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container detail-container">
-        <!-- 상단 네비게이션 -->
-        <nav class="nav-back">
-            <a href="index.html" class="btn back-btn">&larr; 홈으로 돌아가기</a>
-        </nav>
+    <div class="container">
+        <header>
+            <h1>📖 나만의 따뜻한 서재</h1>
+            <p>새로운 책의 감동을 기록해보세요.</p>
+        </header>
 
-        <!-- 작성 폼 카드 -->
-        <article class="detail-card">
-            <h1 class="book-title-large" style="margin-bottom: 25px;">✍️ 새 책 후기 작성하기</h1>
-            
-            <form class="write-form">
+        <div class="detail-header">
+            <a href="index.html" class="btn-back">&larr; 목록으로</a>
+            <h2>새 후기 작성하기</h2>
+        </div>
+
+        <div class="detail-content">
+            <!-- 폼 입력 영역 -->
+            <form id="writeForm">
                 <div class="form-group">
-                    <label>책 제목</label>
-                    <input type="text" placeholder="책 제목을 입력해주세요" class="form-input" />
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>작성자</label>
-                        <input type="text" placeholder="이름을 입력해주세요" class="form-input" />
-                    </div>
-                    <div class="form-group">
-                        <label>작성일</label>
-                        <input type="date" class="form-input" />
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>책 표지 이미지 선택</label>
-                        <input type="file" class="form-file" />
-                    </div>
-                    <div class="form-group">
-                        <label>별점 (5점 만점)</label>
-                        <select class="form-input">
-                            <option value="5">⭐⭐⭐⭐⭐ (5점)</option>
-                            <option value="4">⭐⭐⭐⭐ (4점)</option>
-                            <option value="3">⭐⭐⭐ (3점)</option>
-                            <option value="2">⭐⭐ (2점)</option>
-                            <option value="1">⭐ (1점)</option>
-                        </select>
-                    </div>
+                    <label for="title">책 제목</label>
+                    <input type="text" id="title" name="title" placeholder="읽은 책 제목을 입력하세요" required>
                 </div>
 
                 <div class="form-group">
-                    <label>후기 내용</label>
-                    <textarea placeholder="책을 읽고 느낀 점을 자유롭게 적어주세요..." class="form-textarea" style="min-height: 150px;"></textarea>
+                    <label for="author">작성자</label>
+                    <input type="text" id="author" name="author" placeholder="작성자 이름을 입력하세요" required>
                 </div>
 
                 <div class="form-group">
-                    <label>💡 좋았던 구절</label>
-                    <div class="quote-input-row">
-                        <input type="text" placeholder="페이지 번호 (예: p. 45)" class="form-input" style="width: 120px;" />
-                        <input type="text" placeholder="마음에 들었던 구절 내용" class="form-input" style="flex: 1;" />
-                    </div>
+                    <label for="rating">별점 (5점 만점)</label>
+                    <select id="rating" name="rating" required>
+                        <option value="5">★★★★★ (5점)</option>
+                        <option value="4">★★★★☆ (4점)</option>
+                        <option value="3">★★★☆☆ (3점)</option>
+                        <option value="2">★★☆☆☆ (2점)</option>
+                        <option value="1">★☆☆☆☆ (1점)</option>
+                    </select>
                 </div>
 
-                <div class="form-actions" style="margin-top: 30px; text-align: right;">
-                    <a href="index.html" class="btn back-btn">취소</a>
-                    <button type="submit" class="btn primary-btn">저장하기</button>
+                <div class="form-group">
+                    <label for="content">내용 (감상평)</label>
+                    <textarea id="content" name="content" rows="6" placeholder="책을 읽고 느낀 점을 자유롭게 적어주세요" required></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-save" id="saveBtn">저장하기</button>
                 </div>
             </form>
-        </article>
+        </div>
 
-        <!-- 푸터 -->
-        <footer class="footer">
-            <p>&copy; 2026 따뜻한 나의 책장. All rights reserved.</p>
+        <footer>
+            <p>&copy; 2026 따뜻한 서재 기록장. All rights reserved.</p>
         </footer>
     </div>
+
+    <script>
+        // 여러분이 알려주신 구글 앱스 스크립트 웹앱 주소
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwGguvOZqgbJm09TPtCbWwvyLItvOMZvpLeDxuza-JKE6hVFeQ00ykVMXnkB6kP5sI/exec";
+
+        // 저장하기 버튼을 눌렀을 때 실행되는 코드
+        document.getElementById('writeForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // 페이지가 새로고침되는 기본 동작 막기
+
+            const saveBtn = document.getElementById('saveBtn');
+            saveBtn.innerText = '저장 중...';
+            saveBtn.disabled = true;
+
+            // 입력한 값들 모으기 (작성일은 구글 시트에서 오늘 날짜로 자동 입력됨)
+            const formData = {
+                title: document.getElementById('title').value,
+                author: document.getElementById('author').value,
+                rating: document.getElementById('rating').value,
+                content: document.getElementById('content').value
+            };
+
+            // 구글 스프레드시트로 데이터 보내기 (CORS 우회를 위해 text/plain 사용)
+            fetch(WEB_APP_URL, {
+                method: 'POST',
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('성공적으로 저장되었습니다!');
+                window.location.href = 'index.html'; // 저장 후 메인 페이지로 이동
+            })
+            .catch(error => {
+                console.error('저장 중 에러 발생:', error);
+                alert('저장에 실패했습니다. 다시 시도해주세요.');
+                saveBtn.innerText = '저장하기';
+                saveBtn.disabled = false;
+            });
+        });
+    </script>
 </body>
 </html>
