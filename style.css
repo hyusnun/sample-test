@@ -97,15 +97,6 @@ header p {
     border: 1px solid #D8E2DC; /* 카드 테두리 선 추가로 구분감 업 */
 }
 
-/* 책 표지 이미지 (메인) */
-.card-cover {
-    width: 100px; 
-    height: 150px; 
-    object-fit: cover; 
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
 .card-content {
     flex: 1;
 }
@@ -154,7 +145,74 @@ header p {
     background-color: #588157;
 }
 
-/* 별점 아이콘 스타일 */
+/* 상세 보기 화면 */
+.detail-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #D8E2DC;
+}
+
+.detail-header h2 {
+    margin: 0;
+    color: #3A5A40;
+}
+
+.detail-buttons {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+}
+
+.btn-edit {
+    background-color: #588157;
+    color: #FFFFFF;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-delete {
+    background-color: #E07A5F; /* 따뜻한 코랄빛 톤의 삭제 버튼 */
+    color: #FFFFFF;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* 책 후기 본문 영역을 독립된 흰색 카드 박스로 포장 */
+.detail-content {
+    background-color: #FFFFFF; 
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(58, 90, 64, 0.08);
+    border: 1px solid #D8E2DC;
+    margin-bottom: 30px;
+}
+
+.detail-section {
+    margin-top: 20px;
+}
+
+.detail-section h3 {
+    color: #3A5A40;
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    border-bottom: 2px solid #F0F4ED;
+    padding-bottom: 6px;
+}
+
+.review-text {
+    line-height: 1.7;
+    color: #34495E;
+    font-size: 1.05rem;
+}
+
 .star-icon {
     color: #D8E2DC; 
     font-size: 1.2rem;
@@ -162,6 +220,77 @@ header p {
 
 .star-icon.filled {
     color: #F4A261; /* 눈에 띄고 따뜻한 골드 오렌지 별점 */
+}
+
+/* 💬 방문자 댓글 영역 디자인 (후기 본문과 확실하게 분리) */
+.comment-area {
+    background-color: #FFFFFF;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(58, 90, 64, 0.08);
+    border: 1px solid #D8E2DC;
+    margin-top: 20px;
+}
+
+.comment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+/* 개별 댓글 카드 박스 */
+.comment {
+    background-color: #F4F7F2; /* 연한 파스텔 크림-그린 배경으로 댓글 구분 */
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #588157; /* 왼쪽 포인트 바 */
+}
+
+.comment-user {
+    font-weight: bold;
+    color: #3A5A40;
+    margin-bottom: 5px;
+    display: block;
+    font-size: 0.95rem;
+}
+
+.comment-text {
+    margin: 0 0 8px 0;
+    color: #2F3E35;
+    font-size: 0.95rem;
+}
+
+.comment-date {
+    font-size: 0.75rem;
+    color: #7F8C8D;
+}
+
+.comment-input-group {
+    display: flex;
+    gap: 10px;
+}
+
+.comment-input-group input {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #CCD5AE;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+}
+
+.btn-add-comment {
+    background-color: #3A5A40;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-add-comment:hover {
+    background-color: #588157;
 }
 
 footer {

@@ -21,14 +21,14 @@
             </div>
         </div>
 
-        <!-- 책 상세 내용 영역 -->
+        <!-- 책 상세 내용 영역 (하얀색 독립 카드 박스) -->
         <div class="detail-content" id="detailContainer">
             <p style="text-align: center; color: #588157;">상세 내용을 불러오는 중입니다...</p>
         </div>
 
-        <!-- 방문자 댓글 영역 -->
+        <!-- 방문자 댓글 영역 (별도의 구분된 카드 박스) -->
         <div class="comment-area">
-            <h3 style="color: #3A5A40; margin-bottom: 15px;">💬 방문자 댓글</h3>
+            <h3 style="color: #3A5A40; margin-top: 0; margin-bottom: 20px; border-bottom: 2px solid #F0F4ED; padding-bottom: 8px;">💬 방문자 댓글</h3>
             
             <!-- 댓글 목록이 표시되는 곳 -->
             <div class="comment-list" id="commentList">
@@ -36,9 +36,9 @@
             </div>
 
             <!-- 댓글 작성 폼 -->
-            <form id="commentForm" class="comment-input-form" style="margin-top: 20px;">
-                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-                    <input type="text" id="commentAuthor" placeholder="이름 (닉네임)" required style="width: 150px; padding: 10px; border: 2px solid #CCD5AE; border-radius: 6px;">
+            <form id="commentForm" class="comment-input-form">
+                <div style="display: flex; gap: 10px; margin-bottom: 12px;">
+                    <input type="text" id="commentAuthor" placeholder="작성자 이름 (닉네임)" required style="width: 180px; padding: 10px; border: 2px solid #CCD5AE; border-radius: 8px; font-size: 0.95rem;">
                 </div>
                 <div class="comment-input-group">
                     <input type="text" id="commentText" placeholder="따뜻한 댓글을 남겨주세요..." required>
@@ -53,7 +53,6 @@
     </div>
 
     <script>
-        // 새로 발급받으신 웹앱 주소 적용
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxDDjiATJpE1CEigpbiCgMxOsMB28Zf4nIfag6M6yZb2jZTrW4gPhygxo9kQs9b4bY/exec";
 
         // 주소창에서 글 번호표(index) 가져오기
@@ -83,17 +82,17 @@
                     }
 
                     document.getElementById('detailContainer').innerHTML = `
-                        <h2 style="color: #3A5A40; margin-top: 0; font-size: 1.8rem;">${review.title}</h2>
-                        <p class="card-author">작성자: ${review.author}</p>
-                        <p class="card-date">작성일: ${review.date}</p>
+                        <h2 style="color: #3A5A40; margin-top: 0; font-size: 1.8rem; margin-bottom: 8px;">${review.title}</h2>
+                        <p class="card-author" style="margin: 0 0 4px 0;">작성자: ${review.author}</p>
+                        <p class="card-date" style="margin: 0 0 15px 0;">작성일: ${review.date}</p>
                         
-                        <div class="detail-rating" style="margin: 15px 0 25px 0;">
+                        <div class="detail-rating" style="margin: 0 0 25px 0;">
                             ${stars} <span style="font-weight: bold; margin-left: 5px; color: #3A5A40;">(${review.rating}점 만점)</span>
                         </div>
 
                         <div class="detail-section">
                             <h3>후기 내용</h3>
-                            <div class="review-text" style="white-space: pre-line; line-height: 1.6; color: #34495E;">${review.content}</div>
+                            <div class="review-text" style="white-space: pre-line;">${review.content}</div>
                         </div>
                     `;
                 });
