@@ -29,7 +29,8 @@
     </div>
 
     <script>
-        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwDzjC4Yfaz0jN6fSKEQe05zggbDL-pkO_Hzp4XupI9NH3UToArEFrCZrxlpQyaFcw/exec";
+        // 새로 발급받으신 웹앱 주소 적용
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxDDjiATJpE1CEigpbiCgMxOsMB28Zf4nIfag6M6yZb2jZTrW4gPhygxo9kQs9b4bY/exec";
 
         let allReviews = []; 
 
@@ -64,7 +65,6 @@
 
                 const card = document.createElement('div');
                 card.className = 'review-card';
-                // [수정됨] 자세히 보기 클릭 시 몇 번째 글인지 index 번호표를 주소 뒤에 붙여서 전달 (detail.html?index=0 등)
                 card.innerHTML = `
                     <div class="card-content" style="width: 100%;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
