@@ -59,18 +59,15 @@
     </div>
 
     <script>
-        // 여러분이 알려주신 구글 앱스 스크립트 웹앱 주소
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwGguvOZqgbJm09TPtCbWwvyLItvOMZvpLeDxuza-JKE6hVFeQ00ykVMXnkB6kP5sI/exec";
 
-        // 저장하기 버튼을 눌렀을 때 실행되는 코드
         document.getElementById('writeForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // 페이지가 새로고침되는 기본 동작 막기
+            event.preventDefault(); 
 
             const saveBtn = document.getElementById('saveBtn');
             saveBtn.innerText = '저장 중...';
             saveBtn.disabled = true;
 
-            // 입력한 값들 모으기 (작성일은 구글 시트에서 오늘 날짜로 자동 입력됨)
             const formData = {
                 title: document.getElementById('title').value,
                 author: document.getElementById('author').value,
@@ -78,15 +75,18 @@
                 content: document.getElementById('content').value
             };
 
-            // 구글 스프레드시트로 데이터 보내기 (CORS 우회를 위해 text/plain 사용)
             fetch(WEB_APP_URL, {
                 method: 'POST',
+                mode: 'no-cors', // GitHub Pages 환경에서 CORS 차단을 우회하기 위한 설정
+                headers: {
+                    'Content-Type': 'text/plain;charset=utf-8',
+                },
                 body: JSON.stringify(formData)
             })
-            .then(response => response.json())
-            .then(data => {
+            .then(() => {
+                // no-cors 모드에서는 응답 내용을 직접 읽을 수 없으므로 성공으로 처리하고 메인으로 이동
                 alert('성공적으로 저장되었습니다!');
-                window.location.href = 'index.html'; // 저장 후 메인 페이지로 이동
+                window.location.href = 'index.html';
             })
             .catch(error => {
                 console.error('저장 중 에러 발생:', error);
