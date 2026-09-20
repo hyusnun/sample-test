@@ -29,7 +29,6 @@
     </div>
 
     <script>
-        // 새로 발급받으신 웹앱 주소 적용
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxDDjiATJpE1CEigpbiCgMxOsMB28Zf4nIfag6M6yZb2jZTrW4gPhygxo9kQs9b4bY/exec";
 
         let allReviews = []; 
@@ -63,6 +62,9 @@
                     stars += (i < ratingNum) ? '<span class="star-icon filled">★</span>' : '<span class="star-icon">★</span>';
                 }
 
+                // 날짜 데이터에서 'T' 앞부분(YYYY-MM-DD)만 깔끔하게 잘라내기
+                let formattedDate = review.date ? review.date.toString().split('T')[0] : '';
+
                 const card = document.createElement('div');
                 card.className = 'review-card';
                 card.innerHTML = `
@@ -72,7 +74,7 @@
                             <div>${stars}</div>
                         </div>
                         <p class="card-author">작성자: ${review.author}</p>
-                        <p class="card-date">작성일: ${review.date}</p>
+                        <p class="card-date">작성일: ${formattedDate}</p>
                         <p class="card-preview">${review.content}</p>
                         <div class="card-actions">
                             <a href="detail.html?index=${index}" class="btn-detail">자세히 보기</a>
